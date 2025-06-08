@@ -90,126 +90,271 @@
       transform: translateY(-2px);
     }
 
-    .login-button {
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .login-button i {
-      margin-right: 8px;
-    }
-
-    .login-button:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
     /* Contenido principal */
     main {
       padding: 30px;
       animation: fadeIn 0.8s ease;
     }
 
-    .intro {
-      max-width: 800px;
-      margin: 0 auto;
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 40px 20px;
-    }
-
-    .intro h1 {
-      color: #2e7d32;
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      animation: fadeInDown 1s ease;
-    }
-
-    .intro p {
-      color: #555;
-      font-size: 1.1rem;
-      margin-bottom: 30px;
-      animation: fadeInUp 1s ease;
-    }
-
-    /* Formulario de login */
-    .login-form {
-      max-width: 400px;
-      margin: 50px auto;
-      background-color: white;
-      padding: 30px;
+      color: white;
       border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      animation: fadeInUp 1.2s ease;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .login-form h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #2e7d32;
-      font-size: 1.8rem;
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     }
 
-    .login-form label {
-      display: block;
-      margin: 15px 0 8px;
-      color: #555;
-      font-weight: 500;
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
 
-    .login-form input {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 15px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .login-form input:focus {
-      border-color: #2e7d32;
-      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
-      outline: none;
-    }
-
-    .login-form button {
-      width: 100%;
-      padding: 12px;
+    .cta-button {
       background-color: #2e7d32;
       color: white;
-      font-size: 1rem;
-      font-weight: 500;
+      padding: 15px 30px;
       border: none;
-      border-radius: 5px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 500;
       cursor: pointer;
-      margin-top: 10px;
       transition: all 0.3s ease;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: inline-flex;
+      align-items: center;
     }
 
-    .login-form button:hover {
+    .cta-button i {
+      margin-right: 10px;
+    }
+
+    .cta-button:hover {
       background-color: #1b5e20;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 50px 0;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      color: #2e7d32;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .stats {
+      background-color: #2e7d32;
+      color: white;
+      padding: 60px 30px;
+      border-radius: 10px;
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .stats h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+    }
+
+    .testimonials {
+      margin: 50px 0;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .testimonial-text::before {
+      content: '"';
+      font-size: 3rem;
+      color: #2e7d32;
+      opacity: 0.3;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      color: #2e7d32;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: #666;
+      font-size: 0.9rem;
     }
 
     /* Footer */
     footer {
       background-color: #2e7d32;
       color: white;
-      text-align: center;
-      padding: 20px 0;
+      padding: 40px 0;
       margin-top: 50px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-bottom: 10px;
+    }
+
+    .footer-column a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     /* Animaciones */
@@ -263,13 +408,12 @@
         justify-content: center;
       }
       
-      .login-button {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .intro h1 {
+      .hero h1 {
         font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -284,48 +428,158 @@
     </div>
 
     <nav class="nav-bar">
-      <a href="inicio.HTML" class="nav-link">
+      <a href="index.html" class="nav-link">
         <i class="fas fa-info-circle"></i> Sobre Nosotros
       </a>
       <a href="recolecciones.html" class="nav-link">
         <i class="fas fa-trash-alt"></i> Recolecciones
       </a>
-      <a href="cuenta.HTML" class="nav-link">
-        <i class="fas fa-user-circle"></i> Cuenta
-      </a>
     </nav>
-
-    <button class="login-button" onclick="document.getElementById('login-section').scrollIntoView({ behavior: 'smooth' })">
-      <i class="fas fa-sign-in-alt"></i> Entrar
-    </button>
   </header>
 
   <main>
-    <section class="intro">
-      <h1>Bienvenido a TrashGO</h1>
-      <p>TrashGO es una plataforma innovadora diseñada para conectar empresas que necesitan gestionar residuos con recolectores disponibles...</p>
-      <!-- Continúa con el contenido que ya tenías -->
+    <!-- Sección Hero -->
+    <section class="hero">
+      <h1>Transformando residuos en oportunidades</h1>
+      <p>Conectamos empresas con recolectores para una gestión eficiente de residuos, fomentando el reciclaje y creando empleos verdes en Culiacán</p>
+      <a href="#features" class="cta-button">
+        <i class="fas fa-leaf"></i> Conoce más
+      </a>
     </section>
 
-    <!-- SECCIÓN DE LOGIN -->
-    <section id="login-section" class="login-form">
-      <h2>Iniciar Sesión</h2>
-      <form action="login.php" method="POST">
-        <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" required placeholder="Ingresa tu correo">
+    <!-- Sección de características -->
+    <section id="features" class="features">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-recycle"></i>
+        </div>
+        <h3>Reciclaje eficiente</h3>
+        <p>Ayudamos a las empresas a gestionar sus residuos de manera responsable, reduciendo su impacto ambiental y cumpliendo con normativas.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-hands-helping"></i>
+        </div>
+        <h3>Empleos verdes</h3>
+        <p>Generamos oportunidades laborales para más de 3,000 recolectores en Culiacán, mejorando sus condiciones de trabajo e ingresos.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <i class="fas fa-map-marked-alt"></i>
+        </div>
+        <h3>Rutas optimizadas</h3>
+        <p>Nuestra plataforma optimiza las rutas de recolección, ahorrando tiempo y combustible, reduciendo emisiones de CO₂.</p>
+      </div>
+    </section>
 
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="contraseña" required placeholder="Ingresa tu contraseña">
+    <!-- Sección de estadísticas -->
+    <section class="stats">
+      <h2>Nuestro Impacto en Culiacán</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">Toneladas de basura diarias</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3,000+</div>
+          <div class="stat-label">Personas dependen de la recolección</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">300</div>
+          <div class="stat-label">Trabajos diarios generados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">33%</div>
+          <div class="stat-label">De la basura estatal</div>
+        </div>
+      </div>
+    </section>
 
-        <button type="submit">
-          <i class="fas fa-sign-in-alt"></i> Entrar
-        </button>
-      </form>
+    <!-- Sección de testimonios -->
+    <section class="testimonials">
+      <h2>Lo que dicen nuestros usuarios</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            Gracias a TrashGO hemos podido gestionar nuestros residuos de manera más eficiente y cumplir con nuestras metas de sostenibilidad.
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Juan Pérez" class="author-avatar">
+            <div class="author-info">
+              <h4>Juan Pérez</h4>
+              <p>Gerente de BBVA Culiacán</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            Ahora tengo trabajo estable y seguro. Puedo planificar mis rutas y saber exactamente cuánto voy a ganar cada día.
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María López" class="author-avatar">
+            <div class="author-info">
+              <h4>María López</h4>
+              <p>Recolectora certificada</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            Como ciudadana me siento orgullosa de que existan iniciativas como esta que mejoran nuestra ciudad y generan empleo.
+          </div>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana García" class="author-avatar">
+            <div class="author-info">
+              <h4>Ana García</h4>
+              <p>Vecina de Culiacán</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 TrashGO - Todos los derechos reservados.
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>TrashGO</h3>
+        <p>Plataforma innovadora que conecta empresas con recolectores para una gestión eficiente de residuos en Culiacán.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Enlaces</h3>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Sobre Nosotros</a></li>
+          <li><a href="#">Recolecciones</a></li>
+          <li><a href="#">Cuenta</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contacto</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Blvd. Universitarios, Culiacán</li>
+          <li><i class="fas fa-phone"></i> (667) 123 4567</li>
+          <li><i class="fas fa-envelope"></i> info@trashgo.com</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 TrashGO - Todos los derechos reservados. Contribuyendo a los ODS 11 y 12 de la ONU.
+    </div>
   </footer>
 
   <script>
