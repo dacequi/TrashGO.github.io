@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recolecciones - Bancos Culiacán | TrashGO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #4CAF50;
+      --secondary-color: #2c3e50;
+      --accent-color: #45a049;
+      --text-color: #333;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --dark-gray: #7f8c8d;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--light-gray);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 1em 1.5em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .logo img {
+      height: 100%;
+    }
+
+    .nav-bar {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-bar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-bar a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    .nav-bar a.active {
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .nav-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: white;
+    }
+
+    main {
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease;
+    }
+
+    .page-header h1 {
+      color: var(--secondary-color);
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .page-header p {
+      color: var(--dark-gray);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .banks-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      animation: slideUp 0.8s ease;
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    .banks-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .banks-table thead {
+      background-color: var(--primary-color);
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+
+    .banks-table th {
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .banks-table td {
+      padding: 15px;
+      border-bottom: 1px solid var(--medium-gray);
+      vertical-align: middle;
+    }
+
+    .banks-table tbody tr {
+      transition: all 0.3s ease;
+    }
+
+    .banks-table tbody tr:hover {
+      background-color: rgba(76, 175, 80, 0.05);
+      transform: translateX(5px);
+    }
+
+    .location-cell {
+      display: flex;
+      align-items: center;
+    }
+
+    .location-icon {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+
+    .bank-name {
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+
+    .branch-name {
+      color: var(--dark-gray);
+      font-size: 0.9em;
+      margin-top: 3px;
+    }
+
+    .action-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 120px;
+    }
+
+    .action-btn:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .action-btn i {
+      margin-left: 5px;
+    }
+
+    footer {
+      background-color: var(--secondary-color);
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-bar {
+        display: none;
+      }
+      
+      header {
+        justify-content: center;
+      }
+
+      .banks-table {
+        min-width: 600px;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://i.pinimg.com/736x/3d/32/07/3d320763dffb2f773039cf23da051e13.jpg" alt="Logo TrashGO">
+    </div>
+
+    <nav class="nav-bar">
+      <a href="inicio.HTML">Inicio</a>
+      <a href="recolecciones.html" class="active">Recolecciones</a>
+      <a href="cuenta.html">Cuenta</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <h1>Todos los Bancos de Culiacán</h1>
+      <p>Listado completo de todas las sucursales bancarias disponibles para recolección en Culiacán</p>
+    </div>
+
+    <div class="banks-container">
+      <div class="table-responsive">
+        <table class="banks-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Ubicación</th>
+              <th>Banco</th>
+              <th>Sucursal</th>
+              <th>Horario</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Banco Azteca -->
+            <tr>
+              <td>1</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Álvaro Obregón 123</td>
+              <td>
+                <div class="bank-name">Banco Azteca</div>
+                <div class="branch-name">Sucursal Centro</div>
+              </td>
+              <td>001</td>
+              <td>Lun-Vie: 9:00 - 18:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 456</td>
+              <td>
+                <div class="bank-name">Banco Azteca</div>
+                <div class="branch-name">Sucursal Norte</div>
+              </td>
+              <td>002</td>
+              <td>Lun-Vie: 9:00 - 19:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Sanalona 789</td>
+              <td>
+                <div class="bank-name">Banco Azteca</div>
+                <div class="branch-name">Sucursal Sanalona</div>
+              </td>
+              <td>003</td>
+              <td>Lun-Vie: 9:00 - 18:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- BBVA Bancomer -->
+            <tr>
+              <td>4</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. De las Américas 789</td>
+              <td>
+                <div class="bank-name">BBVA Bancomer</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>101</td>
+              <td>Lun-Vie: 8:30 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Rolando Arjona 234</td>
+              <td>
+                <div class="bank-name">BBVA Bancomer</div>
+                <div class="branch-name">Galerías Culiacán</div>
+              </td>
+              <td>102</td>
+              <td>Lun-Vie: 9:00 - 17:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Calle Juárez 567</td>
+              <td>
+                <div class="bank-name">BBVA Bancomer</div>
+                <div class="branch-name">Centro Histórico</div>
+              </td>
+              <td>103</td>
+              <td>Lun-Vie: 8:00 - 15:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Universidad 890</td>
+              <td>
+                <div class="bank-name">BBVA Bancomer</div>
+                <div class="branch-name">Campus Universitario</div>
+              </td>
+              <td>104</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Banamex -->
+            <tr>
+              <td>8</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Jesús Kumate 890</td>
+              <td>
+                <div class="bank-name">Banamex</div>
+                <div class="branch-name">Sucursal Principal</div>
+              </td>
+              <td>201</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Sanalona 123</td>
+              <td>
+                <div class="bank-name">Banamex</div>
+                <div class="branch-name">Plaza San Isidro</div>
+              </td>
+              <td>202</td>
+              <td>Lun-Vie: 9:30 - 15:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 456</td>
+              <td>
+                <div class="bank-name">Banamex</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>203</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Banorte -->
+            <tr>
+              <td>11</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Centro Histórico 456</td>
+              <td>
+                <div class="bank-name">Banorte</div>
+                <div class="branch-name">Sucursal Centro</div>
+              </td>
+              <td>301</td>
+              <td>Lun-Vie: 8:30 - 15:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Universidad 789</td>
+              <td>
+                <div class="bank-name">Banorte</div>
+                <div class="branch-name">Campus Universitario</div>
+              </td>
+              <td>302</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 234</td>
+              <td>
+                <div class="bank-name">Banorte</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>303</td>
+              <td>Lun-Vie: 8:30 - 16:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Los Pinos 567</td>
+              <td>
+                <div class="bank-name">Banorte</div>
+                <div class="branch-name">Sucursal Pinos</div>
+              </td>
+              <td>304</td>
+              <td>Lun-Vie: 9:00 - 15:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- HSBC -->
+            <tr>
+              <td>15</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Burócratas 567</td>
+              <td>
+                <div class="bank-name">HSBC</div>
+                <div class="branch-name">Sucursal Burócratas</div>
+              </td>
+              <td>401</td>
+              <td>Lun-Vie: 9:00 - 17:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Sanalona 890</td>
+              <td>
+                <div class="bank-name">HSBC</div>
+                <div class="branch-name">Plaza San Isidro</div>
+              </td>
+              <td>402</td>
+              <td>Lun-Vie: 9:00 - 18:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Galerías Culiacán 123</td>
+              <td>
+                <div class="bank-name">HSBC</div>
+                <div class="branch-name">Galerías Culiacán</div>
+              </td>
+              <td>403</td>
+              <td>Lun-Dom: 10:00 - 20:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Santander -->
+            <tr>
+              <td>18</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Chapultepec 123</td>
+              <td>
+                <div class="bank-name">Santander</div>
+                <div class="branch-name">Sucursal Chapultepec</div>
+              </td>
+              <td>501</td>
+              <td>Lun-Vie: 8:30 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 456</td>
+              <td>
+                <div class="bank-name">Santander</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>502</td>
+              <td>Lun-Vie: 9:00 - 17:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Universidad 789</td>
+              <td>
+                <div class="bank-name">Santander</div>
+                <div class="branch-name">Campus Universitario</div>
+              </td>
+              <td>503</td>
+              <td>Lun-Vie: 8:30 - 15:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Los Pinos 234</td>
+              <td>
+                <div class="bank-name">Santander</div>
+                <div class="branch-name">Sucursal Pinos</div>
+              </td>
+              <td>504</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Scotiabank -->
+            <tr>
+              <td>22</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Las Quintas 234</td>
+              <td>
+                <div class="bank-name">Scotiabank</div>
+                <div class="branch-name">Sucursal Quintas</div>
+              </td>
+              <td>601</td>
+              <td>Lun-Vie: 9:00 - 17:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Galerías Culiacán 567</td>
+              <td>
+                <div class="bank-name">Scotiabank</div>
+                <div class="branch-name">Galerías Culiacán</div>
+              </td>
+              <td>602</td>
+              <td>Lun-Dom: 10:00 - 20:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Revolución 890</td>
+              <td>
+                <div class="bank-name">Scotiabank</div>
+                <div class="branch-name">Sucursal Revolución</div>
+              </td>
+              <td>603</td>
+              <td>Lun-Vie: 9:00 - 17:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- BanCoppel -->
+            <tr>
+              <td>25</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. Los Pinos 890</td>
+              <td>
+                <div class="bank-name">BanCoppel</div>
+                <div class="branch-name">Sucursal Pinos</div>
+              </td>
+              <td>701</td>
+              <td>Lun-Dom: 8:00 - 20:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Centro Histórico 123</td>
+              <td>
+                <div class="bank-name">BanCoppel</div>
+                <div class="branch-name">Centro Histórico</div>
+              </td>
+              <td>702</td>
+              <td>Lun-Dom: 8:00 - 21:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 456</td>
+              <td>
+                <div class="bank-name">BanCoppel</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>703</td>
+              <td>Lun-Dom: 8:00 - 22:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Inbursa -->
+            <tr>
+              <td>28</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Col. San Rafael 456</td>
+              <td>
+                <div class="bank-name">Inbursa</div>
+                <div class="branch-name">Sucursal San Rafael</div>
+              </td>
+              <td>801</td>
+              <td>Lun-Vie: 9:00 - 15:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Álvaro Obregón 789</td>
+              <td>
+                <div class="bank-name">Inbursa</div>
+                <div class="branch-name">Sucursal Centro</div>
+              </td>
+              <td>802</td>
+              <td>Lun-Vie: 9:00 - 15:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Banregio -->
+            <tr>
+              <td>30</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Plaza Galerías 789</td>
+              <td>
+                <div class="bank-name">Banregio</div>
+                <div class="branch-name">Galerías Culiacán</div>
+              </td>
+              <td>901</td>
+              <td>Lun-Dom: 10:00 - 20:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Multiva -->
+            <tr>
+              <td>31</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Plaza San Isidro 234</td>
+              <td>
+                <div class="bank-name">Multiva</div>
+                <div class="branch-name">Plaza San Isidro</div>
+              </td>
+              <td>1001</td>
+              <td>Lun-Vie: 9:00 - 18:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Afirme -->
+            <tr>
+              <td>32</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Zona Dorada 567</td>
+              <td>
+                <div class="bank-name">Afirme</div>
+                <div class="branch-name">Zona Dorada</div>
+              </td>
+              <td>1101</td>
+              <td>Lun-Vie: 8:30 - 16:30</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Sanalona 890</td>
+              <td>
+                <div class="bank-name">Afirme</div>
+                <div class="branch-name">Plaza San Isidro</div>
+              </td>
+              <td>1102</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- BanBajío -->
+            <tr>
+              <td>34</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Av. Revolución 890</td>
+              <td>
+                <div class="bank-name">BanBajío</div>
+                <div class="branch-name">Sucursal Revolución</div>
+              </td>
+              <td>1201</td>
+              <td>Lun-Vie: 9:00 - 17:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+
+            <!-- Intercam Banco -->
+            <tr>
+              <td>35</td>
+              <td class="location-cell"><i class="fas fa-map-marker-alt location-icon"></i>Blvd. Las Américas 123</td>
+              <td>
+                <div class="bank-name">Intercam Banco</div>
+                <div class="branch-name">Plaza Fiesta</div>
+              </td>
+              <td>1301</td>
+              <td>Lun-Vie: 9:00 - 16:00</td>
+              <td><button class="action-btn" onclick="window.location.href='BANCO1.HTML'">Ver detalles <i class="fas fa-arrow-right"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 TrashGO - Todos los derechos reservados.</p>
+      <p>Sistema de gestión de recolecciones en Culiacán</p>
+    </div>
+  </footer>
+</body>
+</html>
