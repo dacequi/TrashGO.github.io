@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de Recolección</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Barra de navegación (consistente con otras páginas) */
+        .navbar {
+            background-color: #2e7d32;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .navbar-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .nav-button i {
+            margin-right: 5px;
+        }
+
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .header h1 {
+            color: #2e7d32;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .info-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item i {
+            color: #2e7d32;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .info-item .label {
+            font-weight: 500;
+            color: #555;
+            min-width: 200px;
+        }
+
+        .info-item .value {
+            font-weight: 400;
+            color: #333;
+        }
+
+        .map-container {
+            margin: 30px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .interest-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 15px 25px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interest-btn:hover {
+            background-color: #1b5e20;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .interest-btn:active {
+            transform: translateY(1px);
+        }
+
+        .interest-btn i {
+            margin-right: 10px;
+        }
+
+        .recycle-icon {
+            display: inline-block;
+            margin-right: 10px;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: #2e7d32;
+        }
+
+        .whatsapp-link {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            .navbar-brand {
+                margin-bottom: 15px;
+            }
+            
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-item .label {
+                min-width: auto;
+                margin-bottom: 5px;
+            }
+            
+            .map-container iframe {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación consistente con las otras páginas -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <i class="fas fa-recycle"></i>
+            TrashGO
+        </a>
+        <div class="navbar-actions">
+            <button class="nav-button" onclick="window.location.href='index.html'">
+                <i class="fas fa-home"></i> Inicio
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>Detalles de Recolección</h1>
+            <p>Información completa para el servicio de recolección programado</p>
+        </div>
+
+        <div class="info-card">
+            <div class="info-item">
+                <i class="fas fa-university"></i>
+                <span class="label">Nombre del Banco:</span>
+                <span class="value highlight">BBVA Culiacán</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span class="label">Ubicación:</span>
+                <span class="value">Boulevard Universitarios, Culiacán Rosales, Sin.</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <span class="label">Horario de Recolección:</span>
+                <span class="value">Lunes a Viernes de 9:00 AM - 2:00 PM</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-recycle"></i>
+                <span class="label">Punto de Reciclaje más cercano:</span>
+                <span class="value">(0.3 km de distancia)</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-user-tie"></i>
+                <span class="label">Encargado de Sucursal:</span>
+                <span class="value">Lic. Juan Pérez González</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span class="label">Pago por el Servicio:</span>
+                <span class="value highlight">$150.00 MXN (Por Recolección)</span>
+            </div>
+        </div>
+
+        <div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3620.82042593732!2d-107.39719102423635!3d24.835813977945392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e2!4m3!3m2!1d24.838294599999998!2d-107.3944209!4m5!1s0x86bcda198edc9691%3A0x56a59eaca8805cf5!2sBanco%20Azteca%2C%20Calle%20Universitarios%20Ote.%2075%2C%20Ignacio%20Allende%2C%2080010%20Culiac%C3%A1n%20Rosales%2C%20Sin.!3m2!1d24.8333308!2d-107.3945815!5e0!3m2!1ses!2smx!4v1749437742831!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
+
+        <a href="https://wa.me/message/2VYYMYAGGPPII1" class="interest-btn" target="_blank">
+            <span class="recycle-icon">
+                <i class="fas fa-recycle"></i>
+            </span>
+            Estoy interesado
+        </a>
+    </div>
+
+    <script>
+        // Animación adicional al hacer clic en el botón
+        document.querySelector('.interest-btn').addEventListener('click', function(e) {
+            // Eliminamos el preventDefault para permitir la navegación
+            // Animación de confirmación
+            this.innerHTML = '<i class="fas fa-recycle"></i> Redirigiendo a WhatsApp...';
+            this.style.backgroundColor = '#25D366';
+            this.style.animation = 'none';
+        });
+
+        // Navegación entre páginas (simulada)
+        document.querySelectorAll('.nav-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aquí iría la lógica para cambiar de página
+                alert('Navegando a: ' + this.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>
